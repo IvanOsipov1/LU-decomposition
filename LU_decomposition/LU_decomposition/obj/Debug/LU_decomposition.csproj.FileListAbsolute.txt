@@ -1,0 +1,7 @@
+C:\study\LU-decomposition\LU_decomposition\LU_decomposition\bin\Debug\LU_decomposition.exe.config
+C:\study\LU-decomposition\LU_decomposition\LU_decomposition\bin\Debug\LU_decomposition.exe
+C:\study\LU-decomposition\LU_decomposition\LU_decomposition\bin\Debug\LU_decomposition.pdb
+C:\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.csproj.AssemblyReference.cache
+C:\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.csproj.CoreCompileInputs.cache
+C:\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.exe
+C:\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.pdb
