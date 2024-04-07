@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,13 +26,13 @@ namespace LU_decomposition
             return sizeMatrix;
         }
 
-        public virtual void matrixInputFromFile(string path)
+        public virtual void matrixInputFromFile()
         {
             try
             {
                 // Путь к файлу для чтения
-
-                string[] Lines = File.ReadAllLines(path);
+                string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Matrix.txt");
+                string[] Lines = File.ReadAllLines(filePath);
                 int rowCount = Lines.Length;
                 int columnCount = Lines[0].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
                 sizeMatrix = rowCount;
@@ -82,7 +83,6 @@ namespace LU_decomposition
 
         public virtual void printMatrix()
         {
-            Console.WriteLine("Введенная матрица: ");
             for (int i = 0; i < sizeMatrix; i++)
             {
                 if (i != 0)
@@ -144,9 +144,10 @@ namespace LU_decomposition
             }
         }
 
-        public override void matrixInputFromFile(string path)
+        public override void matrixInputFromFile()
         {
-            base.matrixInputFromFile(path);
+            Console.WriteLine("Введенная матрица A: ");
+            base.matrixInputFromFile();
         }
 
     }
@@ -155,13 +156,14 @@ namespace LU_decomposition
     {
         private int rowCount;
         private int columnCount;
-        public override void matrixInputFromFile(string path)
+        public override void matrixInputFromFile()
         {
             try
             {
+               
                 // Путь к файлу для чтения
-
-                string[] Lines = File.ReadAllLines(path);
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FreeMembers.txt");
+                string[] Lines = File.ReadAllLines(filePath);
                 rowCount = Lines.Length;
                 columnCount = Lines[0].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
                 sizeMatrix = rowCount;
@@ -188,7 +190,7 @@ namespace LU_decomposition
 
         public override void printMatrix()
         {
-            Console.WriteLine("Ввееденая матрица: ");
+            Console.WriteLine("Введенный вектор свободных членов B: ");
             for (int i = 0; i < rowCount; i++)
             {
                 if (i != 0)
@@ -226,10 +228,12 @@ namespace LU_decomposition
         MainMatrix mainMatrix = new MainMatrix();
         FreeMatrix freeMembers = new FreeMatrix();
 
-        double[,] Amatrix;
-        double[,] Free;
-        double[,] Lmatrix;
-        double[,] Umatrix;
+        private double[,] Amatrix;
+        private double[,] Free;
+        private double[,] Lmatrix;
+        private double[,] Umatrix;
+
+        private double determinant;
         int size;
         
         public SLAE(MainMatrix matrix, FreeMatrix freeMembers)
@@ -288,7 +292,7 @@ namespace LU_decomposition
                         }
                         
                         Umatrix[i, j] = Amatrix[i, j] - sigma;
-                        Console.WriteLine(Umatrix[i, j]);
+                        //Console.WriteLine(Umatrix[i, j]);
                         //Console.WriteLine("Umatrix = " + Umatrix[i, j] + " i = " + i + " j = " + j);
                         //Console.WriteLine("sigma = " + sigma);
                         
@@ -340,7 +344,7 @@ namespace LU_decomposition
                     
                 }
                 Yvalues[i] = (Free[i, 0] - sum) / Lmatrix[i, i];
-                Console.WriteLine("y =  " + Yvalues[i]);
+                //Console.WriteLine("y =  " + Yvalues[i]);
             }
 
             for (int i = 0; i < size; i++)
@@ -351,20 +355,31 @@ namespace LU_decomposition
                     if (i != j)
                     {
                         sum = sum + Umatrix[size - i - 1, size - j - 1] * Xvalues[size - j - 1];
-                        //Console.WriteLine((size - i - 1) + " sum = " + sum + " " + Umatrix[size - i - 1, size - j - 1]);
-                        //Console.WriteLine((size - i - 1) + " " + (size - j - 1));
-                        //Console.WriteLine(Umatrix[2, 1]);
                     }
 
                 }
                 Xvalues[size - i - 1] = (Yvalues[size - i - 1] - sum) / Umatrix[size - i - 1, size - i - 1];
-                Console.WriteLine(Yvalues[size - i - 1] - sum);
+               
             }
+            Console.WriteLine();
             for (int i = 0; i < size; i++)
             {
-                Console.WriteLine("x = " + Xvalues[i]);
+                Console.WriteLine("X" + (i + 1) + " = " + Xvalues[i]);
             }
 
+        }
+
+        public void determinantCalculation()
+        {
+            double detL = 1;
+            double detU = 1;
+            for (int i = 0; i < size; i++)
+            {
+                detL = detL * Lmatrix[i, i];
+                detU = detU * Umatrix[i, i];
+            }
+            determinant = detU * detL;
+            Console.WriteLine("Опеределитель матрицы A = " + determinant);
         }
     }
     internal class Program
@@ -379,6 +394,9 @@ namespace LU_decomposition
             
 
             MainMatrix matrix1 = new MainMatrix();
+            Console.WriteLine();
+            Console.WriteLine("Матрицы хранятся в папке проекта, для редактирования файлов используйте путь: ");
+            Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
             Console.WriteLine("Выберите предложенный вариант - введите соответствующее варианту число ");
             Console.WriteLine("1. Ввести матрицу вручуню");
             Console.WriteLine("2. Ввести матрицу из файла Matrix.txt");
@@ -389,7 +407,7 @@ namespace LU_decomposition
             }
             if (choice1 == 2)
             {
-                matrix1.matrixInputFromFile(@"C:\study\LU-decomposition\LU_decomposition\Matrix.txt");
+                matrix1.matrixInputFromFile();
             }
 
             matrix1.printMatrix();
@@ -405,7 +423,7 @@ namespace LU_decomposition
             }
             if (choice2 == 2)
             {
-                matrix2.matrixInputFromFile(@"C:\study\LU-decomposition\LU_decomposition\FreeMembers.txt");
+                matrix2.matrixInputFromFile();
             }
 
             matrix2.printMatrix();
@@ -414,6 +432,7 @@ namespace LU_decomposition
             SLAE slae = new SLAE(matrix1, matrix2);
             slae.LUdecomposition();
             slae.SLAESolution();
+            slae.determinantCalculation();
 
         }
     }

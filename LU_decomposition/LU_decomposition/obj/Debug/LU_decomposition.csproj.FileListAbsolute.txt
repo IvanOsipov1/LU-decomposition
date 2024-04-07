@@ -5,3 +5,11 @@ C:\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decompo
 C:\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.csproj.CoreCompileInputs.cache
 C:\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.exe
 C:\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.pdb
+E:\MyJob\study\LU-decomposition\LU_decomposition\LU_decomposition\bin\Debug\LU_decomposition.exe.config
+E:\MyJob\study\LU-decomposition\LU_decomposition\LU_decomposition\bin\Debug\LU_decomposition.exe
+E:\MyJob\study\LU-decomposition\LU_decomposition\LU_decomposition\bin\Debug\LU_decomposition.pdb
+E:\MyJob\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.csproj.AssemblyReference.cache
+E:\MyJob\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.csproj.SuggestedBindingRedirects.cache
+E:\MyJob\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.csproj.CoreCompileInputs.cache
+E:\MyJob\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.exe
+E:\MyJob\study\LU-decomposition\LU_decomposition\LU_decomposition\obj\Debug\LU_decomposition.pdb
